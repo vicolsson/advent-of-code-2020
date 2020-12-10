@@ -4,18 +4,17 @@ const solvePuzzle = (input) => {
   rows.unshift(0);
   rows.push(rows[rows.length - 1] + 3);
 
-  countBackwards(rows, rows.length - 1);
+  loopBackwards(rows);
 
   return cache[0];
 }
 
 const cache = {};
 
-const countBackwards = (rows, index) => {
-  cache[index] = countToEnd(rows, index);
-
-  if (index > 0) {
-    countBackwards(rows, index - 1);
+const loopBackwards = (rows) => {
+  let i = rows.length;
+  while (i--) {
+    cache[i] = countToEnd(rows, i);
   }
 }
 
